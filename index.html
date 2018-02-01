@@ -1,17 +1,16 @@
 <html>
   <head>
     <title>Scouting Terminal Test</title>
-    <link href="stylesheet.css" rel="stylesheet">
   </head>
 
   <body>
     <center>
     <h1>Scouting Form</h1>
-    <p>in comic sans</p>
     <br><br>
     <h2>Pre-Match</h2>
-    <form id="scoutform">
+    <form id="scoutform" action="auto.html">
       Event: <select id="event">
+        <!-- change default each week -->
         <option value="mabri">NE District SE Mass Event</option>
         <option value="rismi">NE District Rhode Island Event</option>
         <option value="necmp">New England District Championship</option>
@@ -28,6 +27,8 @@
       Team Number: <select id="team">
         <!-- Will be populated with teams that are part of the selected alliance in the selected match -->
       </select>
-      <p id="teamName">Please enter a team number.</p>
-
+      <p id="teamName">Please enter a team number.</p><br>
+      <input value="Submit" id="submitp" type="submit"></input>
     </form>
+  </body>
+</html>
