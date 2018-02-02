@@ -8,9 +8,12 @@
     <h1>Scouting Form</h1>
     <br><br>
     <h2>Pre-Match</h2>
-    <form id="scoutform" action="auto.html">
-      Event: <select id="event">
+    <form id="prematchform" action="auto.html">
+      Event:
+      <select id="event">
         <!-- change default each week -->
+        <option value="mawor" selected>NE District Worcester Polytechnic Institute Event (TEST)</option>
+        <option value="nhgrs">NE District Granite State Event (TEST)</option>
         <option value="mabri">NE District SE Mass Event</option>
         <option value="rismi">NE District Rhode Island Event</option>
         <option value="necmp">New England District Championship</option>
@@ -27,7 +30,7 @@
       Team Number: <select id="team">
         <!-- Will be populated with teams that are part of the selected alliance in the selected match -->
       </select>
-      <p id="teamName">Please enter a team number.</p><br>
+      <p id="teamName">Please select a team number.</p><br>
       <input value="Submit" id="submitp" type="submit"></input>
     </form>
   </body>
