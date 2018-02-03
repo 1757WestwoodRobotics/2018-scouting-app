@@ -10,7 +10,7 @@
     <br><br>
     <h2>Pre-Match</h2>
 
-    <form id="prematchform" action="/public/auto.php">
+    <form id="prematchform" action="/auto.html">
       Event:
       <select id="event" name="event">
         <!-- change default each week -->
@@ -22,10 +22,11 @@
         <option value="cmpmi">FIRST Championship (Detroit)</option>
         <option value="other">Other</option>
       </select><br>
-      <p id="other" hidden>Other: </p><input id="other" type="text" name="otherevent" hidden><br><br>
 
-      Match Number: <input id="match" type="text"><br>
-      <p id="matchType">match type goes here</p>
+      Match Number: <input id="match" type="text"><br><br>
+      Match Type: <select id="matchType" name="matchType">
+        <option value="Qualifying 1" selected>Qualifying 1</option>
+      </select><br><br>
 
       Alliance: <select id="alliance" name="alliance">
         <option value="red">Red</option>
@@ -35,9 +36,7 @@
       Team Number: <select id="team" name="team">
         <!-- Will be populated with teams that are part of the selected alliance in the selected match -->
         <option value="test" selected>Test</option>
-      </select>
-
-      <p id="teamName">Please select a team number.</p><br>
+      </select><br><br>
 
       <input value="Next" id="submitp" type="submit"></input>
 
