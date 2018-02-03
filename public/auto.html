@@ -1,19 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Scouting Terminal</title>
-  </head>
-  <link rel="stylesheet" href="stylesheet.css"></link>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+  <title>Scouting Terminal</title>
+
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/4.9.1/firebase-app.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/4.9.1/firebase-auth.js"></script>
+  <script defer src="/__/firebase/4.9.1/firebase-database.js"></script>
+  <script defer src="/__/firebase/4.9.1/firebase-messaging.js"></script>
+  <script defer src="/__/firebase/4.9.1/firebase-storage.js"></script>
+  <!-- initialize the SDK after all desired features are loaded -->
+  <script defer src="/__/firebase/init.js"></script>
+
+</head>
+  
   <body>
     <center>
       <h1>Scouting Form</h1>
       <p>You are currently scouting: </p>
       <h3 id="match_number">Qualifying 1</h3>
-      <h3 id="team">BLUE ALLIANCE</h3>
+      <h3 id="allyfield">ERROR IN FINDING ALLIANCE</h3>
+      <p id="numfield"></p>
       <br>
       <h2>Autonomous</h2>
 
-      <form id="autoform" action="/public/teleop.php">
+      <form id="autoform" action="teleop.html">
 
         <label for="cube">Starts with Power Cube?</label>
         <input type="checkbox" id="cube" name="cube" checked></input><br><br>
@@ -55,9 +72,14 @@
         <input type="text" id="notes" value="Miscellaneous Notes"></input><br><br>
         <input type="submit" id="submita" value="Submit"></input>
       -->
-        <br><br>
-        <input type="submit" value="Submit" id="submitauto"></input>
 
+        <br><br>
+        <input class="btn btn-success" type="submit" value="Submit" id="submitauto"></input>
+
+        <input type="text" id="number" name="data" hidden></input>
+        <input type="text" id="alliance" name="alliance" hidden></input>
+        <input type="text" id="matchType" name="matchType" hidden></input>
+        <input type="text" id="event" name="event" hidden></input>
       </form>
 
 
@@ -66,13 +88,34 @@
           $(document).ready(() => {
             console.log("Hi");
 
-            $(#submitauto).submit(() => {
+            $("#submitauto").submit(() => {
 
             });
 
           });
 
-          function getArgs
+          var url = new URL(window.location.href);
+          var teamInfo = {
+            "number": url.searchParams.get('team'),
+            "alliance": url.searchParams.get('alliance'),
+            "event": url.searchParams.get('event'),
+            "matchType": url.searchParams.get('matchType')
+          }
+          document.getElementById('numfield').innerHTML=
+            "Team " + teamInfo.number;
+          document.getElementById('allyfield').innerHTML=
+            teamInfo.alliance.toUpperCase() + " ALLIANCE";
+          document.getElementById('match_number').innerHTML=
+            teamInfo.matchType;
+          document.getElementById('number').value=
+            teamInfo.number;
+          document.getElementById('alliance').value=
+            teamInfo.alliance;
+          document.getElementById('matchType').value=
+            teamInfo.matchType;
+          document.getElementById('event').vaule=
+            teamInfo.event;
+
         </script>
     </body>
 </html>
