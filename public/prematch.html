@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Scouting Terminal</title>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+  <title>Scouting Terminal</title>
+
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/4.9.1/firebase-app.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/4.9.1/firebase-auth.js"></script>
+  <script defer src="/__/firebase/4.9.1/firebase-database.js"></script>
+  <script defer src="/__/firebase/4.9.1/firebase-messaging.js"></script>
+  <script defer src="/__/firebase/4.9.1/firebase-storage.js"></script>
+  <!-- initialize the SDK after all desired features are loaded -->
+  <script defer src="/__/firebase/init.js"></script>
+
+</head>
 
   <body>
     <center>
     <h1>Scouting Form</h1>
     <br><br>
     <h2>Pre-Match</h2>
-
-    <form id="prematchform" action="/auto.html">
+      
+    <form id="prematchform" action="auto.html">
       Event:
-      <select id="event" name="event">
+      <select id="comp_event" name="comp_event">
         <!-- change default each week -->
-        <option value="mawor" selected>NE District Worcester Polytechnic Institute Event (TEST)</option>
-        <option value="nhgrs">NE District Granite State Event (TEST)</option>
-        <option value="mabri">NE District SE Mass Event</option>
-        <option value="rismi">NE District Rhode Island Event</option>
-        <option value="necmp">New England District Championship</option>
+        <option value="mawor" selected>NE - Worcester Polytechnic Institute (TEST)</option>
+        <option value="nhgrs">NE - Granite State (TEST)</option>
+        <option value="mabri">NE - SE Mass Event</option>
+        <option value="rismi">NE - Rhode Island Event</option>
+        <option value="necmp">NE District Championship</option>
         <option value="cmpmi">FIRST Championship (Detroit)</option>
-        <option value="other">Other</option>
       </select><br>
 
       Match Number: <input id="match" type="text"><br><br>
@@ -38,13 +53,20 @@
         <option value="test" selected>Test</option>
       </select><br><br>
 
-      <input value="Next" id="submitp" type="submit"></input>
+      <input class="btn btn-success" value="Next" id="submitprematch" type="submit"></input>
 
     </form>
 
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script>
       $(document).ready(() => {
+
+        $("#submitprematch").submit(() => {
+
+          console.log($("#comp_event").val);
+
+        });
+
         $.ajaxSetup({
           headers: {
             'X-TBA-Auth-Key': 'wFUWCLSuF6HpsRaSSKlHGbCYu0kUSiQWjZnahWzUazolbsvqLgQjAQOkmbkTw19h'
