@@ -8,17 +8,18 @@
       <h1>Scouting Form</h1>
       <p>You are currently scouting: </p>
       <h3 id="match_number">Qualifying 1</h3>
-      <h3 id="team">BLUE ####</h3>
+      <h3 id="team">BLUE ALLIANCE</h3>
+      <?php echo $_GET["team"]; ?>
       <br>
       <h2>Autonomous</h2>
 
-      <form id="autoform" action="teleop.html">
+      <form id="autoform" action="/public/teleop.php">
 
         <label for="cube">Starts with Power Cube?</label>
-        <input type="checkbox" id="cube" checked></input><br><br>
+        <input type="checkbox" id="cube" name="cube" checked></input><br><br>
 
         <label for="position">Robot Starting Position</label>
-        <select id="position">
+        <select id="position" name="position">
           <option value="left" selected>Left</option>
           <option value="middle">Middle</option>
           <option value="right">Right</option>
@@ -27,7 +28,7 @@
         <br><br>
 
         <label for="progress">Accomplishments</label>
-        <select id="progress">
+        <select id="progress" name="progress">
           <option value="auto" selected>Crossed Auto Line</option>
           <option value="switch">Placed Cube on Switch</option>
           <option value="scale">Placed Cube on Scale</option>
@@ -35,7 +36,7 @@
           <option value="switchscale">Placed Cube on both Switch and Scale</option>
         </select><br>
 
-        <input type="checkbox" id="drop"></input>
+        <input type="checkbox" id="drop" name="drop"></input>
         <label for="drop">Drop?</label><br>
 
 
@@ -55,7 +56,7 @@
         <input type="submit" id="submita" value="Submit"></input>
       -->
         <br><br>
-        <input type="submit" value="Submit"></input>
+        <input type="submit" value="Submit" id="submitauto"></input>
 
       </form>
 
@@ -64,6 +65,11 @@
         <script>
           $(document).ready(() => {
             console.log("Hi");
+
+            $(#submitauto).submit(() => {
+
+            });
+
           });
         </script>
     </body>

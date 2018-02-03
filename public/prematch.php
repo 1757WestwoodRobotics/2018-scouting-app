@@ -10,9 +10,9 @@
     <br><br>
     <h2>Pre-Match</h2>
 
-    <form id="prematchform" action="auto.html">
+    <form id="prematchform" action="/public/auto.php">
       Event:
-      <select id="event">
+      <select id="event" name="event">
         <!-- change default each week -->
         <option value="mawor" selected>NE District Worcester Polytechnic Institute Event (TEST)</option>
         <option value="nhgrs">NE District Granite State Event (TEST)</option>
@@ -22,18 +22,19 @@
         <option value="cmpmi">FIRST Championship (Detroit)</option>
         <option value="other">Other</option>
       </select><br>
-      <p id="other" hidden>Other: </p><input id="other" type="text" hidden><br><br>
+      <p id="other" hidden>Other: </p><input id="other" type="text" name="otherevent" hidden><br><br>
 
       Match Number: <input id="match" type="text"><br>
       <p id="matchType">match type goes here</p>
 
-      Alliance: <select id="alliance">
+      Alliance: <select id="alliance" name="alliance">
         <option value="red">Red</option>
         <option value="blue">Blue</option>
       </select><br>
 
-      Team Number: <select id="team">
+      Team Number: <select id="team" name="team">
         <!-- Will be populated with teams that are part of the selected alliance in the selected match -->
+        <option value="test" selected>Test</option>
       </select>
 
       <p id="teamName">Please select a team number.</p><br>
