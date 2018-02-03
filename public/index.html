@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/4.9.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/4.9.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/4.9.1/firebase-database.js"></script>
+    <script defer src="/__/firebase/4.9.1/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/4.9.1/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+  </head>
+  <body>
+
+    <center>
+      <h1>Westwood Robotics 2018 Scouting Terminal</h1>
+
+      <a href="#">View Previous Match Data</a>
+      <br><br>
+      <a href="/prematch.html">Scout New Match</a>
+      <br><br>
+      <a href="#">Get Current Rankings</a>
+
+    </center>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCdaI303pgNJWju28fSKdnZdgX2oq0KUaU",
+        authDomain: "ww-robotics-scouting.firebaseapp.com",
+        databaseURL: "https://ww-robotics-scouting.firebaseio.com",
+        projectId: "ww-robotics-scouting",
+        storageBucket: "ww-robotics-scouting.appspot.com",
+        messagingSenderId: "859867845267"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+    <script>
+      $(document).ready(() => {
+        $.ajaxSetup({
+          headers: {
+            'X-TBA-Auth-Key': 'wFUWCLSuF6HpsRaSSKlHGbCYu0kUSiQWjZnahWzUazolbsvqLgQjAQOkmbkTw19h'
+          }
+        });
+
+        getTBAEventStats((data) => {
+          console.log(data);
+        });
+      });
+
+      function getTBAEventStats(callback) {
+        var url = "http://www.thebluealliance.com/api/v3/event/2017mabri/matches/keys";
+        $.getJSON(url, (data) => {
+          callback(data);
+        });
+      }
+
+      // function getTBACurrentMatchNumber() ???
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+          let app = firebase.app();
+          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+  </body>
+</html>

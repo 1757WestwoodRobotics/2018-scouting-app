@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Scouting Terminal</title>
+  </head>
+  <body>
+    <center>
+      <h1>Scouting Form</h1>
+      <p>You are currently scouting: </p>
+      <h3 id="match_number">Qualifying 1</h3>
+      <h3 id="team">BLUE ####</h3>
+      <br>
+      <h2>Autonomous</h2>
+
+      <form id="autoform" action="teleop.html">
+
+        <label for="cube">Starts with Power Cube?</label>
+        <input type="checkbox" id="cube" checked></input><br><br>
+
+        <label for="position">Robot Starting Position</label>
+        <select id="position">
+          <option value="left" selected>Left</option>
+          <option value="middle">Middle</option>
+          <option value="right">Right</option>
+        </select>
+
+        <br><br>
+
+        <label for="progress">Accomplishments</label>
+        <select id="progress">
+          <option value="auto" selected>Crossed Auto Line</option>
+          <option value="switch">Placed Cube on Switch</option>
+          <option value="scale">Placed Cube on Scale</option>
+          <option value="exchange">Placed Cube in Exchange</option>
+          <option value="switchscale">Placed Cube on both Switch and Scale</option>
+        </select><br>
+
+        <input type="checkbox" id="drop"></input>
+        <label for="drop">Drop?</label><br>
+
+
+        <!-- Implement some form of robot position recording - canvas? -->
+        <!--
+        <input type="checkbox" id="auto"></input>
+        <label for="auto">Crossed Auto Line</label><br><br>
+        <input type="checkbox" id="places"></input>
+        <label for="places">Successful Place?</label><br>
+        <input type="checkbox" id="throws"></input>
+        <label for="throws">Successful Throw?</label><br>
+        <input type="checkbox" id="drop"></input>
+        <label for="drop">Drop?</label><br>
+        <input type="checkbox" id="throwf"></input>
+        <label for="throwf">Failed Throw?</label><br><br>
+        <input type="text" id="notes" value="Miscellaneous Notes"></input><br><br>
+        <input type="submit" id="submita" value="Submit"></input>
+      -->
+        <br><br>
+        <input type="submit" value="Submit"></input>
+
+      </form>
+
+
+        <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script>
+          $(document).ready(() => {
+            console.log("Hi");
+          });
+        </script>
+    </body>
+</html>
