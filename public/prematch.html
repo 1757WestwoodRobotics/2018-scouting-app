@@ -8,6 +8,8 @@
 
   <title>Scouting Terminal</title>
 
+  <script src="scripts/jquery-3.3.1.min.js"></script>
+
   <!-- update the version number as needed -->
   <script defer src="/__/firebase/4.9.1/firebase-app.js"></script>
   <!-- include only the Firebase features as you need -->
@@ -52,7 +54,7 @@
         <option value="blue">Blue</option>
       </select><br>
 
-      Team Number: <select id="team_number" name="team_number">
+      Team Number: <select id="team_number" name="team_number" type="number">
         <!-- Will be populated with teams that are part of the selected alliance in the selected match -->
         <option value="" disabled selected>--</option>
       </select><br><br>
@@ -61,7 +63,6 @@
 
     </form>
 
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script>
 
       var match_key = null;
