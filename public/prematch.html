@@ -25,32 +25,36 @@
     <h1>Scouting Form</h1>
     <br><br>
     <h2>Pre-Match</h2>
-      
-    <form id="prematchform" action="auto.html">
-      Event:
-      <select id="comp_event" name="comp_event">
-        <!-- change default each week -->
-        <option value="mawor" selected>NE - Worcester Polytechnic Institute (TEST)</option>
-        <option value="nhgrs">NE - Granite State (TEST)</option>
-        <option value="mabri">NE - SE Mass Event</option>
-        <option value="rismi">NE - Rhode Island Event</option>
-        <option value="necmp">NE District Championship</option>
-        <option value="cmpmi">FIRST Championship (Detroit)</option>
-      </select><br>
 
-      Match Number: <input id="match" type="text"><br><br>
-      Match Type: <select id="matchType" name="matchType">
-        <option value="Qualifying 1" selected>Qualifying 1</option>
+    <form id="prematchform" action="auto.html">
+
+      Event:
+      <select id="event_key" name="event_key">
+        <!-- change default each week -->
+        <option value="" disabled>-- Event --</option>
+        <option value="2017mabri" selected>NE - SE Mass 2017 (TEST)</option>
+        <option value="2018mawor">NE - WPI Event (TEST)</option>
+        <option value="2018nhgrs">NE - Granite State Event (TEST)</option>
+        <option value="2018mabri">NE - SE Mass Event</option>
+        <option value="2018rismi">NE - Rhode Island Event</option>
+        <option value="2018necmp">NE District Championship</option>
+        <option value="2018cmpmi">FIRST Championship (Detroit)</option>
       </select><br><br>
 
+      Match Type: <select id="match_type" name="match_type">
+        <option value="qm" selected>Qualifying Match</option>
+      </select><br>
+
+      Match Number: <input id="match_number" type="text" name="match_number"><br><br>
+
       Alliance: <select id="alliance" name="alliance">
-        <option value="red">Red</option>
+        <option value="red" selected>Red</option>
         <option value="blue">Blue</option>
       </select><br>
 
-      Team Number: <select id="team" name="team">
+      Team Number: <select id="team_number" name="team_number">
         <!-- Will be populated with teams that are part of the selected alliance in the selected match -->
-        <option value="test" selected>Test</option>
+        <option value="" disabled selected>--</option>
       </select><br><br>
 
       <input class="btn btn-success" value="Next" id="submitprematch" type="submit"></input>
@@ -59,13 +63,12 @@
 
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script>
+
+      var match_key = null;
+      var red = null;
+      var blue = null;
+
       $(document).ready(() => {
-
-        $("#submitprematch").submit(() => {
-
-          console.log($("#comp_event").val);
-
-        });
 
         $.ajaxSetup({
           headers: {
@@ -73,17 +76,75 @@
           }
         });
 
-        getTBAEventStats((data) => {
-          console.log(data);
+        $("#match_number").change(() => {
+
+          var event_key = $("#event_key").val();
+          match_key = $("#match_type").val() + $("#match_number").val();
+
+          getTBAEventMatch(event_key, match_key, (data) => {
+            console.log(data.alliances);
+            red = data.alliances.red.team_keys;
+            blue = data.alliances.blue.team_keys;
+
+            if ($("#alliance").val() === "red") {
+              populateAllianceTeams("red");
+            } else if ($("#alliance").val() === "blue") {
+              populateAllianceTeams("blue");
+            }
+
+          });
+
         });
+
+        $("#alliance").change(() => {
+          if ($("#alliance").val() === "red") {
+            populateAllianceTeams("red");
+          } else if ($("#alliance").val() === "blue") {
+            populateAllianceTeams("blue");
+          }
+        });
+
+        $("#prematchform").submit((event) => {
+
+
+        });
+
+
       });
 
-      function getTBAEventStats(callback) {
-        var url = "http://www.thebluealliance.com/api/v3/event/2017mabri/matches/keys";
+      function getTBAEventMatch(event_key, match_key, callback) {
+        var url = "https://www.thebluealliance.com/api/v3/match/" + event_key + "_" + match_key + "/simple";
+        console.log(url);
         $.getJSON(url, (data) => {
           callback(data);
         });
       }
+
+      function populateAllianceTeams(alliance) {
+
+        $("#team_number").empty();
+
+        if (alliance === "red") {
+          red.forEach((team) => {
+            var option = document.createElement("option");
+            option.value = team.substr(3);
+            option.text = team.substr(3);
+            console.log(option);
+            $("#team_number").append(option);
+          });
+
+        } else if (alliance === "blue") {
+          blue.forEach((team) => {
+            var option = document.createElement("option");
+            option.value = team.substr(3);
+            option.text = team.substr(3);
+            $("#team_number").append(option);
+          });
+
+        }
+
+      }
+
     </script>
   </body>
 </html>
