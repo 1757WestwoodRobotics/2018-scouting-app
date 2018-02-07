@@ -56,7 +56,7 @@
 
       Team Number: <select id="team_number" name="team_number" type="number">
         <!-- Will be populated with teams that are part of the selected alliance in the selected match -->
-        <option value="" disabled selected>--</option>
+        <option value="" disabled selected>Enter Match Number</option>
       </select><br><br>
 
       <input class="btn btn-success" value="Next" id="submitprematch" type="submit"></input>
@@ -118,6 +118,8 @@
         console.log(url);
         $.getJSON(url, (data) => {
           callback(data);
+        }).fail(() => {
+          alert("Error getting the match data! Has the event started yet? Double check the event, match type, and match number.");
         });
       }
 
