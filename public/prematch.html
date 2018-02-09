@@ -83,7 +83,6 @@
           match_key = $("#match_type").val() + $("#match_number").val();
 
           getTBAEventMatch(event_key, match_key, (data) => {
-            console.log(data.alliances);
             red = data.alliances.red.team_keys;
             blue = data.alliances.blue.team_keys;
 
@@ -115,7 +114,6 @@
 
       function getTBAEventMatch(event_key, match_key, callback) {
         var url = "https://www.thebluealliance.com/api/v3/match/" + event_key + "_" + match_key + "/simple";
-        console.log(url);
         $.getJSON(url, (data) => {
           callback(data);
         }).fail(() => {
@@ -132,7 +130,6 @@
             var option = document.createElement("option");
             option.value = team.substr(3);
             option.text = team.substr(3);
-            console.log(option);
             $("#team_number").append(option);
           });
 
