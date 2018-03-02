@@ -18,6 +18,8 @@
 					    <input type="text" id="etcDescription" name="etcDescription">
 					    <br>
 					    <br>
+					    <input type="checkbox" id="fallOverCheck" name="fallOverCheck">Fall over
+					    <input type="text" id="fallOverDescription" name="fallOverDescription">
 					<h3>Earning Points</h3>
 						<input type="number" id="placeAttempts" name="placeAttempts" min="0"> Place attempts
 						<br>
@@ -35,19 +37,22 @@
 						<br>
 						<br>
 						<input type="checkbox" id="placeCheck" name="placeCheck"> Places
-						<br>
-						<br>
-						<input type="number" id="timesObtained" name="timesObtained"> Times ownership obtained
-						<br>
-						<br>
 					<h3>Climbing</h3>
-						<input type="checkbox" id="onRamp" name="onRamp"> On Ramp?
+						<input type="checkbox" id="onRamp" name="onRamp"> On Platform
 						<br>
 						<br>
-						<input type="checkbox" id="climbSuccess" name="climbSuccess"> Success
+						Type of climb: <br>
+						<input type="radio" id="climbNone" name="typeOfClimb" value="None"> None
 						<br>
+						<input type="radio" id="climbFront" name="typeOfClimb" value="Hang Front"> Hang Front
 						<br>
-						Type of climb: <input id="typeOfClimb" name="typeOfClimb"> 
+						<input type="radio" id="climbSide" name="typeOfClimb" value="Hang Side"> Hang Side
+						<br>
+						<input type="radio" id="climbOneSelf" name="typeOfClimb" value="Lift 1 Robot and Itself"> Lift 1 Robot and Itself
+						<br>
+						<input type="radio" id="climbTwoSelf" name="typeOfClimb" value="Lift 2 Robots and Itself"> Lift 2 Robots and Itself
+						<br>
+						<input type="radio" id="climbTwoNoSelf" name="typeOfClimb" value="Lift 2 Robots but not Itself"> Lift 2 Robots but not Itself
 						<br>
 						<br>
 					<input type="submit" id="submitButton" name= "submitButton">
