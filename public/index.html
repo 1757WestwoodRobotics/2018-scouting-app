@@ -46,6 +46,7 @@
         messagingSenderId: "859867845267"
       };
       firebase.initializeApp(config);
+      var database = firebase.database();
     </script>
 
     <script>
@@ -59,6 +60,17 @@
         getTBAEventStats((data) => {
           console.log(data);
         });
+
+        uploadData('2017mabri', 10, 1757, {
+          hello: "data",
+          test: "more"
+        })
+
+        uploadData('2017mabri', 10, 100, {
+          hello: "data",
+          test: "new"
+        })
+
       });
 
       function getTBAEventStats(callback) {
@@ -69,29 +81,11 @@
       }
 
       // function getTBACurrentMatchNumber() ???
+      function uploadData(event_key, match_number, team_number, data) {
+        firebase.database().ref('events/' + event_key + '/' + match_number + '/' + team_number).set(data);
+      }
+
     </script>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
   </body>
 </html>
