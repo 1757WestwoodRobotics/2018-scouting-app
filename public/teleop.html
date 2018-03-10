@@ -17,42 +17,42 @@
 			<form>
 				<h2>Teleop</h2>
 				    <h3>Failures</h3>
-					    <input type="checkbox" id="foulCheck" name="foulCheck">Foul
-					    <input type="text" id="foulDescription" name="foulDescription">
+					    <input type="checkbox" id="breakCheck" name="breakCheck"> Breakdown
+					    <br>
+						<br>
+						<input type="checkbox" id="fallOverCheck" name="fallOverCheck">Fall over
+						<br>
+						<br>
+					    Notes: <input type="text" id="etcDescription" name="etcDescription">
 					    <br>
 					    <br>
-					    <input type="checkbox" id="breakCheck" name="breakCheck">Breakdown
-					    <input type="text" id="breakDescription" name="breakDescription">
-					    <br>
-					    <br>
-					    <input type="checkbox" id="etcCheck" name="etcCheck">Other
-					    <input type="text" id="etcDescription" name="etcDescription">
-					    <br>
-					    <br>
-					    <input type="checkbox" id="fallOverCheck" name="fallOverCheck">Fall over
-					    <input type="text" id="fallOverDescription" name="fallOverDescription">
 					<h3>Earning Points</h3>
 						<input type="number" id="placeAttempts" name="placeAttempts" min="0"> Place attempts
 						<br>
 						<br>
-						<input type="number" id="throwAttempts" name="throwAttempts" min="0">Throw attempts
+						<input type="number" id="throwAttempts" name="throwAttempts" min="0"> Throw attempts
 						<br>
 						<br>
 						<input type="number" id="placeSuccesses" name="placeSuccesses" min="0"> Place successes
 						<br>
 						<br>
-						<input type="number" id="throwSuccesses" name="throwSuccesses" min="0">Throw successes
-						<br>
-						<br>
-						<input type="checkbox" id="throwCheck" name="throwCheck"> Throws
-						<br>
-						<br>
-						<input type="checkbox" id="placeCheck" name="placeCheck"> Places
+						<input type="number" id="throwSuccesses" name="throwSuccesses" min="0"> Throw successes
 					<h3>End Game</h3>
 						<input type="checkbox" id="onRamp" name="onRamp"> On Platform
 						<br>
 						<br>
-						Type of climb: <br>
+						Type of climb:
+						<select id="typeOfClimb" name="typeOfClimb">
+							<option value="none">None</option>
+							<option value="front">Front</option>
+							<option value="side">Side</option>
+						</select><br><br>
+						Number of other robots lifted:
+						<select id="liftNo" name="liftNo">
+							<option value="one">1 Robot</option>
+							<option value="two">2 Robots</option>
+						</select><br><br>
+						<!--
 						<input type="radio" id="climbNone" name="typeOfClimb" value="None"> None
 						<br>
 						<input type="radio" id="climbFront" name="typeOfClimb" value="Hang Front"> Hang Front
@@ -66,6 +66,7 @@
 						<input type="radio" id="climbTwoNoSelf" name="typeOfClimb" value="Lift 2 Robots but not Itself"> Lift 2 Robots but not Itself
 						<br>
 						<br>
+						-->
 					<input type="submit" id="submitButton" name= "submitButton">
 			</form>
 		</center>
