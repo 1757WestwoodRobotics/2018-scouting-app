@@ -1,1 +1,61 @@
-firebase is just needed for talking to the database
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+  <title>Scouting Terminal</title>
+
+  <script src="scripts/jquery-3.3.1.min.js"></script>
+
+</head>
+
+  <body>
+    <center>
+      <h1>Get Rankings</h1>
+      <br><br>
+      <form id = "rankingform" action = "auto.html">
+        Event:
+        <select id="event_key" name="event_key">
+          <!-- change default each week -->
+          <option value="" disabled>-- Event --</option>
+          <option value="2017mabri" selected>NE - SE Mass 2017 (TEST)</option>
+          <option value="2018mawor">NE - WPI Event (TEST)</option>
+          <option value="2018nhgrs">NE - Granite State Event (TEST)</option>
+          <option value="2018mabri">NE - SE Mass Event</option>
+          <option value="2018rismi">NE - Rhode Island Event</option>
+          <option value="2018necmp">NE District Championship</option>
+          <option value="2018cmpmi">FIRST Championship (Detroit)</option>
+        </select>
+      </form>
+
+      <script>
+        $(document).ready(() => {
+        $.ajaxSetup({
+          headers: {
+            'X-TBA-Auth-Key': 'wFUWCLSuF6HpsRaSSKlHGbCYu0kUSiQWjZnahWzUazolbsvqLgQjAQOkmbkTw19h'
+          }
+        });
+
+        getTBAEventStats((data) => {
+          console.log(data);
+        });
+      });
+
+      function getTBAEventStats(event_key, callback) {
+        var url = "http://www.thebluealliance.com/api/v3/event/" + event_key + "/rankings";
+        console.log(url);
+        $.getJSON(url, (data) => {
+          callback(data);
+        });
+      }
+      </script>
+    </center>
+
+  </body>
+
+
+</html>
