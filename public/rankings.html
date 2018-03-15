@@ -39,8 +39,12 @@
             'X-TBA-Auth-Key': 'wFUWCLSuF6HpsRaSSKlHGbCYu0kUSiQWjZnahWzUazolbsvqLgQjAQOkmbkTw19h'
           }
         });
+          
+          $('#event_key').change(() => {
+            // FIX
+          });
 
-        getTBAEventStats((data) => {
+        getTBAEventStats('2018mabri', (data) => {
           console.log(data);
         });
       });
