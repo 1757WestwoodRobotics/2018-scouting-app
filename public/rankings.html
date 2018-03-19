@@ -34,19 +34,19 @@
 
       <script>
         $(document).ready(() => {
-        $.ajaxSetup({
-          headers: {
-            'X-TBA-Auth-Key': 'wFUWCLSuF6HpsRaSSKlHGbCYu0kUSiQWjZnahWzUazolbsvqLgQjAQOkmbkTw19h'
-          }
-        });
+          $.ajaxSetup({
+            headers: {
+              'X-TBA-Auth-Key': 'wFUWCLSuF6HpsRaSSKlHGbCYu0kUSiQWjZnahWzUazolbsvqLgQjAQOkmbkTw19h'
+            }
+          });
 
-        getTBAEventStats((data) => {
-          console.log(data);
-        });
+          getTBAEventStats("2017mabri", (data) => {
+            console.log(data);
+          });
       });
 
       function getTBAEventStats(event_key, callback) {
-        var url = "http://www.thebluealliance.com/api/v3/event/" + event_key + "/rankings";
+        let url = "http://www.thebluealliance.com/api/v3/event/" + event_key + "/rankings";
         console.log(url);
         $.getJSON(url, (data) => {
           callback(data);
