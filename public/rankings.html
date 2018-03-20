@@ -53,7 +53,7 @@
         });
 
         function getTBAEventStats(event_key, callback) {
-            let url = "http://www.thebluealliance.com/api/v3/event/" + event_key + "/rankings";
+            let url = "https://www.thebluealliance.com/api/v3/event/" + event_key + "/rankings";
             console.log(url);
             $.getJSON(url, (data) => {
                 callback(data);
