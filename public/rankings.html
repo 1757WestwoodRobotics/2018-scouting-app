@@ -10,7 +10,23 @@
     <title>Scouting Terminal</title>
 
     <script src="scripts/jquery-3.3.1.min.js"></script>
+    <style>
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+      }
 
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
+
+      tr:nth-child(even) {
+          background-color: #dddddd;
+      }
+    </style>
 </head>
 
 <body>
@@ -31,6 +47,19 @@
             <option value="2018cmpmi">FIRST Championship (Detroit)</option>
         </select>
     </form>
+    <div id=rankingList>
+      <table id=rankingTable>
+        <tr>
+          <th>Team number</th>
+          <th>Ranking</th>
+          <th>Matches Played</th>
+          <th>Wins</th>
+          <th>Ties</th>
+          <th>Losses</th>
+        </tr>
+
+      </table>
+    </div>
 
     <script>
         $(document).ready(() => {
@@ -46,7 +75,37 @@
             $("#event_key").change(() => {
                 getTBAEventStats($("#event_key").val(), (data) => {
                     // Call another function to deal with the data!
-                    console.log(data);  // Can remove
+                    console.log(data.rankings);  // Can remove
+                    console.log(Object.getOwnPropertyNames(data));
+                    for(x=0;x<data.rankings.length;x++){
+                      newRow=document.createElement("tr");
+                      newRow.id=String(x);
+                      document.getElementById("rankingTable").appendChild(newRow);
+                      var teamNumberHeader=document.createElement("td");
+                      var teamNumber=document.createTextNode(data.rankings[x].team_key.slice(3));
+                      teamNumberHeader.appendChild(teamNumber);
+                      document.getElementById(String(x)).appendChild(teamNumberHeader);
+                      var teamRankingHeader=document.createElement("td");
+                      var teamRanking=document.createTextNode(data.rankings[x].rank);
+                      teamRankingHeader.appendChild(teamRanking);
+                      document.getElementById(String(x)).appendChild(teamRankingHeader);
+                      var teamNumPlayedHeader=document.createElement("td");
+                      var teamNumPlayed=document.createTextNode(data.rankings[x].matches_played);
+                      teamNumPlayedHeader.appendChild(teamNumPlayed);
+                      document.getElementById(String(x)).appendChild(teamNumPlayedHeader);
+                      var teamWinsHeader=document.createElement("td");
+                      var teamWins=document.createTextNode(data.rankings[x].record.wins);
+                      teamWinsHeader.appendChild(teamWins);
+                      document.getElementById(String(x)).appendChild(teamWinsHeader);
+                      var teamTiesHeader=document.createElement("td");
+                      var teamTies=document.createTextNode(data.rankings[x].record.ties);
+                      teamTiesHeader.appendChild(teamTies);
+                      document.getElementById(String(x)).appendChild(teamTiesHeader);
+                      var teamLossesHeader=document.createElement("td");
+                      var teamLosses=document.createTextNode(data.rankings[x].record.losses);
+                      teamLossesHeader.appendChild(teamLosses);
+                      document.getElementById(String(x)).appendChild(teamLossesHeader);
+                    }
                 });
             });
 
