@@ -49,14 +49,6 @@
     </form>
     <div id=rankingList>
       <table id=rankingTable>
-        <tr>
-          <th>Team number</th>
-          <th>Ranking</th>
-          <th>Matches Played</th>
-          <th>Wins</th>
-          <th>Ties</th>
-          <th>Losses</th>
-        </tr>
 
       </table>
     </div>
@@ -74,9 +66,38 @@
              */
             $("#event_key").change(() => {
                 getTBAEventStats($("#event_key").val(), (data) => {
-                    // Call another function to deal with the data!
-                    console.log(data.rankings);  // Can remove
-                    console.log(Object.getOwnPropertyNames(data));
+                  var myNode = document.getElementById("rankingTable");
+                  while (myNode.firstChild) {
+                      myNode.removeChild(myNode.firstChild);
+                  }
+                  headerRow=document.createElement("tr");
+                  headerRow.id="headerRow";
+                  document.getElementById("rankingTable").appendChild(headerRow);
+                  var headerNumber = document.createElement("th");
+                  var headerNumberText=document.createTextNode("Team Number");
+                  headerNumber.appendChild(headerNumberText);
+                  document.getElementById("headerRow").append(headerNumber);
+                  var headerRank=document.createElement("th");
+                  var headerRankText=document.createTextNode("Team Rank");
+                  headerRank.appendChild(headerRankText);
+                  document.getElementById("headerRow").append(headerRank);
+                  var headerGamesPlayed=document.createElement("th");
+                  var headerGamesPlayedText=document.createTextNode("Games Played");
+                  headerGamesPlayed.appendChild(headerGamesPlayedText);
+                  document.getElementById("headerRow").append(headerGamesPlayed);
+                  var headerWins=document.createElement("th");
+                  var headerWinsText=document.createTextNode("Wins");
+                  headerWins.appendChild(headerWinsText);
+                  document.getElementById("headerRow").append(headerWins);
+                  var headerTies=document.createElement("th");
+                  var headerTiesText=document.createTextNode("Ties");
+                  headerTies.appendChild(headerTiesText);
+                  document.getElementById("headerRow").append(headerTies);
+                  var headerLosses=document.createElement("th");
+                  var headerLossesText=document.createTextNode("Losses");
+                  headerLosses.appendChild(headerLossesText);
+                  document.getElementById("headerRow").append(headerLosses);
+                    //The following is made by Bryce Parazin copyright 2018
                     for(x=0;x<data.rankings.length;x++){
                       newRow=document.createElement("tr");
                       newRow.id=String(x);
