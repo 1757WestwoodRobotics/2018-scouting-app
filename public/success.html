@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Scouting Terminal</title>
+        <link href="stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+        <center>
+            <h1>Success!</h1>
+            <h2>Team Info added to database</h2>
+            <br><br>
+            <a class="btn btn-success" href="index.html">Return to Main Page</a>
+        <center>
+    </body>
+
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCdaI303pgNJWju28fSKdnZdgX2oq0KUaU",
+        authDomain: "ww-robotics-scouting.firebaseapp.com",
+        databaseURL: "https://ww-robotics-scouting.firebaseio.com",
+        projectId: "ww-robotics-scouting",
+        storageBucket: "ww-robotics-scouting.appspot.com",
+        messagingSenderId: "859867845267"
+      };
+      firebase.initializeApp(config);
+      var database = firebase.database();
+    </script>
+
+    <script>
+          var url = new URL(window.location.href);
+          var info = {
+            "team_number": url.searchParams.get('team_number'),
+            "alliance": url.searchParams.get('alliance'),
+            "event_key": url.searchParams.get('event'),
+            "match_type": url.searchParams.get('match_type'),
+            "match_number": url.searchParams.get('match_number').toString()
+          }
+
+          if (url.searchParams.get('drop') == null) {
+              console.log('it worked')
+          }
+
+          var data = {
+            "notes": url.searchParams.get('etcDescription'),
+            "placeAttempts": parseInt(url.searchParams.get('placeAttempts')),
+            "placeSuccesses": parseInt(url.searchParams.get('placeSuccesses')),
+            "throwAttempts": parseInt(url.searchParams.get('throwAttempts')),
+            "throwSuccesses": parseInt(url.searchParams.get('throwSuccesses')),
+            "typeOfClimb": url.searchParams.get('typeOfClimb'),
+            "liftNo": parseInt(url.searchParams.get('liftNo')),
+            "startWithCube": url.searchParams.get('cube'),
+            "dropCube": url.searchParams.get('drop'),
+            "startPosition": url.searchParams.get('position')
+          }
+        
+        uploadData(info.event_key, info.match_type, info.match_number, info.team_number, data)
+
+        function uploadData(event_key, match_type, match_number, team_number, data) {
+          firebase.database().ref('events/' + event_key + '/' + match_type + match_number + '/' + team_number).set(data);
+        }
+    </script>
+
+</html>

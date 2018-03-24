@@ -14,7 +14,7 @@
 </head>
 	<body>
 		<center>
-			<form>
+			<form action="success.html">
 				<h2>Teleop</h2>
 				    <h3>Failures</h3>
 					    <input type="checkbox" id="breakCheck" name="breakCheck"> Breakdown
@@ -49,8 +49,9 @@
 						</select><br><br>
 						Number of other robots lifted:
 						<select id="liftNo" name="liftNo">
-							<option value="one">1 Robot</option>
-							<option value="two">2 Robots</option>
+                                                        <option value="0">None</option>
+							<option value="1">1 Robot</option>
+							<option value="2">2 Robots</option>
 						</select><br><br>
 						<!--
 						<input type="radio" id="climbNone" name="typeOfClimb" value="None"> None
@@ -67,8 +68,42 @@
 						<br>
 						<br>
 						-->
-					<input type="submit" id="submitButton" name= "submitButton">
+					<input type="submit" id="submitButton" name="submitButton">
+
+					 <input type="text" id="match_type" name="match_type" hidden>
+       	 				 <input type="text" id="match_number" name="match_number" hidden>
+       	 				 <input type="text" id="alliance" name="alliance" hidden>
+       					 <input type="text" id="event_key" name="event" hidden>
+					 <input type="text" id="team_number" name="team_number" hidden>
+                                         <input type="text" id="cube" name="cube" hidden>
+                                         <input type="text" id="drop" name="drop" hidden>
+                                         <input type="text" id="position" name="position" hidden>
+ 
 			</form>
 		</center>
 	</body>
+
+	<script>
+            var url = new URL(window.location.href);
+            var data = {
+              "team_number": url.searchParams.get('team_number'),
+              "alliance": url.searchParams.get('alliance'),
+              "event_key": url.searchParams.get('event_key'),
+              "match_type": url.searchParams.get('match_type'),
+              "match_number": url.searchParams.get('match_number'),
+              "cube": url.searchParams.get('cube'),
+              "drop": url.searchParams.get('drop'),
+              "position": url.searchParams.get('position')
+            }
+
+            document.getElementById('match_type').value = data.match_type;
+            document.getElementById('match_number').value = data.match_number;
+            document.getElementById('alliance').value = data.alliance;
+            document.getElementById('event_key').value = data.event_key;
+            document.getElementById('team_number').value = data.team_number;
+            document.getElementById('cube').value = data.cube;
+            document.getElementById('drop').value = data.drop;
+            document.getElementById('position').value = data.position;
+
+	</script>
 </html>
