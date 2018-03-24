@@ -52,7 +52,8 @@
             "liftNo": parseInt(url.searchParams.get('liftNo')),
             "startWithCube": url.searchParams.get('cube'),
             "dropCube": url.searchParams.get('drop'),
-            "startPosition": url.searchParams.get('position')
+            "startPosition": url.searchParams.get('position'),
+            "progress": url.searchParams.get('progress')
           }
         
         uploadData(info.event_key, info.match_type, info.match_number, info.team_number, data)
